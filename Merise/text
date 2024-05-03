@@ -1,0 +1,41 @@
+Table Administrateur {
+  ID_administrateur integer [primary key, increment]
+  Nom varchar(255) [not null]
+  Email varchar(255) [not null]
+  Mot_de_passe varchar(255) [not null]
+}
+
+Table Article {
+  ID_article integer [primary key, increment]
+  Contenu varchar(255) [not null]
+  Date_publication date [not null]
+  ID_administrateur integer [ref: > Administrateur.ID_administrateur]
+}
+
+Table Categorie {
+  ID_Categorie integer [primary key, increment]
+  Nom varchar(255) [not null]
+  ID_article integer [ref: > Article.ID_article]
+}
+
+Table SousCategorie {
+  ID_Sous_Categorie integer [primary key, increment]
+  Nom varchar(255) [not null]
+  ID_Categorie integer [ref: > Categorie.ID_Categorie]
+}
+
+Table Utilisateur {
+  ID_utilisateur integer [primary key, increment]
+  Nom varchar(255) [not null]
+  Email varchar(255) [not null]
+  Mot_de_passe varchar(255) [not null]
+}
+
+Table Commentaire {
+  id integer [primary key, increment]
+  contenu text
+  Date date
+  ID_article integer [ref: > Article.ID_article]
+  ID_utilisateur integer [ref: > Utilisateur.ID_utilisateur]
+  ID_administrateur integer [ref: > Administrateur.ID_administrateur]
+}
